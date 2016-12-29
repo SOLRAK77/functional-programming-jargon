@@ -64,7 +64,7 @@ __Tabla de Contenido__
 
 ## Arity
 
-El numero de argumentos que una funcion toma. Tiene palabras como unario, binario, ternario etc. Esta pablabra tiene la distincion de estar compuesta de dos sufijos, "Ary" y "ity" Adicionalmente por ejemplo, toma dos argumentos, y asi se define como una funcion binaria o una funcion de aridad dos. Tal funcion a veces puede ser llamada "diadica" por personas que prefieren las raices griegas al latín. Del mismo modo, una funcion que toma un numero variable de argumentos se denomina "variadic", mientras que una funcion binaria solamente toma dos y nada mas que dos argumentos. Vea mas adelante curring y aplicacion parcial.
+El numero de argumentos que una funcion toma. utiliza terminos como unario, binario, ternario etc. Esta pablabra tiene la distincion de estar compuesta de dos sufijos, "Ary" y "ity" Adicionalmente por ejemplo, toma dos argumentos, y asi se define como una funcion binaria o una funcion de aridad dos. Tal funcion a veces puede ser llamada "diadica" por personas que prefieren las raices griegas al latín. Del mismo modo, una funcion que toma un numero variable de argumentos se denomina "variadic", mientras que una funcion binaria solamente toma dos y nada mas que dos argumentos. Vea mas adelante curring y aplicacion parcial.
 
 
 ```js
@@ -179,8 +179,7 @@ floorAndToString(121.212121) // '121'
 
 ## Purity
 
-A function is pure if the return value is only determined by its
-input values, and does not produce side effects.
+Una funcion es pura si el valor de retorno es determinado solamente por sus valores de entrada, y no produce efectos secundarios.
 
 ```js
 const greet = (name) => `Hi, ${name}`
@@ -188,7 +187,7 @@ const greet = (name) => `Hi, ${name}`
 greet('Brianne') // 'Hi, Brianne'
 ```
 
-As opposed to each of the following:
+A diferencia de la siguiente funcion.
 
 ```js
 window.name = 'Brianne'
@@ -198,7 +197,7 @@ const greet = () => `Hi, ${window.name}`
 greet() // "Hi, Brianne"
 ```
 
-The above example's output is based on data stored outside of the function...
+La salida del ejemplo anterior, esta basada en datos almacenados fuera de la funcion...
 
 ```js
 let greeting
@@ -211,23 +210,23 @@ greet('Brianne')
 greeting // "Hi, Brianne"
 ```
 
-... and this one modifies state outside of the function.
+... y este modifica el estado fuera de la funcion.
 
-## Side effects
+## Efectos Secundarios.
 
-A function or expression is said to have a side effect if apart from returning a value, it interacts with (reads from or writes to) external mutable state.
+Se dice que una funcion o expresion tiene un efecto secundario si aparte de retornar un valor, interactua con el estado mutable externo (lee o escribe).
 
 ```js
 const differentEveryTime = new Date()
 ```
 
 ```js
-console.log('IO is a side effect!')
+console.log('IO es un efecto secundario!')
 ```
 
-## Idempotent
+## Idempotente
 
-A function is idempotent if reapplying it to its result does not produce a different result.
+una funcion es idempotente si al volver a aplicarla sobre su resultado, no produce resultados diferentes.
 
 ```
 f(f(x)) ≍ f(x)
@@ -241,30 +240,29 @@ Math.abs(Math.abs(10))
 sort(sort(sort([2, 1])))
 ```
 
-## Point-Free Style
+## Estilo de punto libre o programacion tacita.
 
-Writing functions where the definition does not explicitly identify the arguments used. This style usually requires [currying](#currying) or other [Higher-Order functions](#higher-order-functions-hof). A.K.A Tacit programming.
+Es un estilo de escribir funciones donde la definicion de la funcion no identifica de forma explicita los argumentos utilizados. Este estilo usualmente requiere [currying](#currying) o otra [Funcion de Orden Superior](#higher-order-functions-hof). Este estilo de programacion tambien es conocido como Programacion Tacita.
 
 ```js
-// Given
+// Dado
 const map = (fn) => (list) => list.map(fn)
 const add = (a) => (b) => a + b
 
 // Then
 
-// Not points-free - `numbers` is an explicit argument
+// Sin utilizar el estilo points-free - `numbers` es un argumento explicito.
 const incrementAll = (numbers) => map(add(1))(numbers)
 
-// Points-free - The list is an implicit argument
+// Utilizando Points-free - La lista es un argumento implicito.
 const incrementAll2 = map(add(1))
 ```
+`incrementAll` identifica y usa el parametro `numbers`, por lo que no es points-free. `incrementAll2` esta escrita simplemente combinando funciones y valores, pero sin mencionar sus argumentos. __Es points-free__.
 
-`incrementAll` identifies and uses the parameter `numbers`, so it is not points-free.  `incrementAll2` is written just by combining functions and values, making no mention of its arguments.  It __is__ points-free.
+Las definiciones de las funciones points-free son muy similares a las asignaciones normales sin `function`  o  `=>`.
 
-Points-free function definitions look just like normal assignments without `function` or `=>`.
-
-## Predicate
-A predicate is a function that returns true or false for a given value. A common use of a predicate is as the callback for array filter.
+## Predicado
+Un predicado es una funcion que retorna true o false segun un valor dado. Un uso comun de un predicado es como callback para la funcion filter de los Arrays.
 
 ```js
 const predicate = (a) => a > 2
@@ -272,12 +270,12 @@ const predicate = (a) => a > 2
 ;[1, 2, 3, 4].filter(predicate) // [3, 4]
 ```
 
-## Contracts
+## Contratos
 
-A contract specifies the obligations and guarantees of the behavior from a function or expression at runtime. This acts as a set of rules that are expected from the input and output of a function or expression, and errors are generally reported whenever a contract is violated.
+Un contrato especifica las obligaciones y garantias de comportamiento de una funcion o expresion en tiempo de ejecucion. Esto actua como un conjunto de reglas que se esperan de la entrada y salida de una funcion o expresion, y los errores son generalmente reportados cuando un contrato es violado.
 
 ```js
-// Define our contract : int -> int
+// Define un contrato: int -> int
 const contract = (input) => {
   if (typeof input === 'number') return true
   throw new Error('Contract violated: expected int -> int')
@@ -293,40 +291,39 @@ addOne('some string') // Contract violated: expected int -> int
 
 TODO
 
-## Categories
+## Categoria.
 
-Objects with associated functions that adhere to certain rules. E.g. [Monoid](#monoid)
+Las categorias son objetos con funciones asociadas que se adieren a ciertas reglas, por ejemplo los [Monoides](#monoid)
 
-## Value
+## Valores
 
-Anything that can be assigned to a variable.
+Cualquier cosa que pueda ser asignado a una variable.
 
 ```js
-5
-Object.freeze({name: 'John', age: 30}) // The `freeze` function enforces immutability.
+Object.freeze({name: 'John', age: 30}) // La funcion `freeze` refuerza la inmutabilidad.
 ;(a) => a
 ;[1]
 undefined
 ```
 
-## Constant
+## Constante
 
-A variable that cannot be reassigned once defined.
+Una constante es una variable que no puede ser reasignada una vez definida.
 
 ```js
 const five = 5
 const john = Object.freeze({name: 'John', age: 30})
 ```
 
-Constants are [referentially transparent](#referential-transparency). That is, they can be replaced with the values that they represent without affecting the result.
+Las constantes son [referencialmente transparentes](#referential-transparency). Es decir que pueden ser reemplazadas por los valores que representan sin afectar al resultado. 
 
-With the above two constants the following expression will always return `true`.
+Con las dos constantes anteriores, la siguiente expresion siempre devolvera  `true`.
 
 ```js
 john.age + five === ({name: 'John', age: 30}).age + (5)
 ```
 
-## Functor
+## Funtor
 
 An object that implements a `map` function which, while running over each value in the object to produce a new object, adheres to two rules:
 
