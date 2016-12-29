@@ -410,7 +410,7 @@ Cuando una aplicacion esta compuesta de expresiones y carece de efectos secundar
 
 ## Lambda
 
-An anonymous function that can be treated like a value.
+Una funcion anonima que puede ser tratada igual que un valor.
 
 ```js
 ;(function (a) {
@@ -419,22 +419,22 @@ An anonymous function that can be treated like a value.
 
 ;(a) => a + 1
 ```
-Lambdas are often passed as arguments to Higher-Order functions.
+Las funciones lambda se suelen pasar a menudo como argumentos a las funciones de orden superior.
 
 ```js
 [1, 2].map((a) => a + 1) // [2, 3]
 ```
 
-You can assign a lambda to a variable.
+Tambien puede asignarse una funcion lambda a una variable.
 
 ```js
 const add1 = (a) => a + 1
 ```
 
 ## Lambda Calculus
-A branch of mathematics that uses functions to create a [universal model of computation](https://en.wikipedia.org/wiki/Lambda_calculus).
+Una rama de las matematicas que utiliza funciones para crear un [modelo universal de computacion](https://en.wikipedia.org/wiki/Lambda_calculus).
 
-## Lazy evaluation
+## Evaluacion Perezosa
 
 Lazy evaluation is a call-by-need evaluation mechanism that delays the evaluation of an expression until its value is needed. In functional languages, this allows for structures like infinite lists, which would not normally be available in an imperative language where the sequencing of commands is significant.
 
