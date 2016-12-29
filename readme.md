@@ -1,68 +1,71 @@
 # Functional Programming Jargon
+#Programacion Funcional Jerga
 
-Functional programming (FP) provides many advantages, and its popularity has been increasing as a result. However, each programming paradigm comes with its own unique jargon and FP is no exception. By providing a glossary, we hope to make learning FP easier.
+La programacion funcional (FP) ofrece muchas ventajas, y como resultado su popularidad ha ido en aumento. Sin embargo, cada paradigma de programación viene con su propia jerga y la FP no es la excepción. Al proporcionar un glosario de terminos, esperamos hacer el aprendizaje de la programación funcional mas simple.
 
-Examples are presented in JavaScript (ES2015). [Why JavaScript?](https://github.com/hemanth/functional-programming-jargon/wiki/Why-JavaScript%3F)
+Los ejemplos se presentan usando la syntaxis de JavaScript 2015 (ES2015) [Why JavaScript?](https://github.com/hemanth/functional-programming-jargon/wiki/Why-JavaScript%3F)
 
-*This is a [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); please feel free to send a PR ;)*
+*Este es un [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); por fabor sientase libre de enviarnos un PR ;)*
 
-Where applicable, this document uses terms defined in the [Fantasy Land spec](https://github.com/fantasyland/fantasy-land)
+Cuando sea necesario, este documento usara terminos definidos en la especificacion de [Fantasy Land spec](https://github.com/fantasyland/fantasy-land)
 
-__Translations__
+__Traducciones__
 * [Portuguese](https://github.com/alexmoreno/jargoes-programacao-funcional)
+* [Spanish](https://github.com/idcmardelplata/functional-programming-jargon)
 
-__Table of Contents__
+__Tabla de Contenido__
 <!-- RM(noparent,notop) -->
 
-* [Arity](#arity)
-* [Higher-Order Functions (HOF)](#higher-order-functions-hof)
-* [Partial Application](#partial-application)
+* [Aridad](#arity)
+* [Funciones de orden superior (HOF)](#higher-order-functions-hof)
+* [Aplicacion parcial](#partial-application)
 * [Currying](#currying)
 * [Auto Currying](#auto-currying)
-* [Function Composition](#function-composition)
-* [Purity](#purity)
-* [Side effects](#side-effects)
-* [Idempotent](#idempotent)
-* [Point-Free Style](#point-free-style)
-* [Predicate](#predicate)
-* [Contracts](#contracts)
-* [Guarded Functions](#guarded-functions)
-* [Categories](#categories)
-* [Value](#value)
-* [Constant](#constant)
-* [Functor](#functor)
-  * [Preserves identity](#preserves-identity)
-  * [Composable](#composable)
-* [Pointed Functor](#pointed-functor)
-* [Lift](#lift)
-* [Referential Transparency](#referential-transparency)
-* [Equational Reasoning](#equational-reasoning)
+* [Composicion funcional](#function-composition)
+* [Pureza](#purity)
+* [Efectos secundarios](#side-effects)
+* [Idempotente](#idempotent)
+* [Estilo de punto libre o programacion tacita](#point-free-style)
+* [Predicado](#predicate)
+* [Contratos](#contracts)
+* [Funciones guardas](#guarded-functions)
+* [Categorias](#categories)
+* [Valor](#value)
+* [Constante](#constant)
+* [Funtor](#functor)
+  * [Preservar la identidad](#preserves-identity)
+  * [Componible](#composable)
+* [Functor apuntado](#pointed-functor)
+* [Elevar (lift)](#lift)
+* [Transparencia referencial](#referential-transparency)
+* [Razonamiento equacional](#equational-reasoning)
 * [Lambda](#lambda)
-* [Lambda Calculus](#lambda-calculus)
-* [Lazy evaluation](#lazy-evaluation)
-* [Monoid](#monoid)
-* [Monad](#monad)
-* [Comonad](#comonad)
-* [Applicative Functor](#applicative-functor)
-* [Morphism](#morphism)
-  * [Endomorphism](#endomorphism)
-  * [Isomorphism](#isomorphism)
-* [Setoid](#setoid)
-* [Semigroup](#semigroup)
-* [Foldable](#foldable)
+* [Calculo Lambda](#lambda-calculus)
+* [Evaluación Perezosa](#lazy-evaluation)
+* [Monoide](#monoid)
+* [Monada](#monad)
+* [Comonada](#comonad)
+* [Funtor Aplicativo](#applicative-functor)
+* [Morfismo](#morphism)
+  * [Endomorfismo](#endomorphism)
+  * [Isomorfismo](#isomorphism)
+* [Setoide](#setoid)
+* [Semigrupo](#semigroup)
+* [Plegable](#foldable)
 * [Traversable](#traversable)
-* [Type Signatures](#type-signatures)
-* [Union type](#union-type)
-* [Product type](#product-type)
-* [Option](#option)
-* [Functional Programming Libraries in JavaScript](#functional-programming-libraries-in-javascript)
+* [Signatura de tipos](#type-signatures)
+* [Tipos de union](#union-type)
+* [Tipos de producto](#product-type)
+* [Opcional](#option)
+* [Librerias para la programación funcional en JavaScript](#functional-programming-libraries-in-javascript)
 
 
 <!-- /RM -->
 
 ## Arity
 
-The number of arguments a function takes. From words like unary, binary, ternary, etc. This word has the distinction of being composed of two suffixes, "-ary" and "-ity." Addition, for example, takes two arguments, and so it is defined as a binary function or a function with an arity of two. Such a function may sometimes be called "dyadic" by people who prefer Greek roots to Latin. Likewise, a function that takes a variable number of arguments is called "variadic," whereas a binary function must be given two and only two arguments, currying and partial application notwithstanding (see below).
+El numero de argumentos que una funcion toma. Tiene palabras como unario, binario, ternario etc. Esta pablabra tiene la distincion de estar compuesta de dos sufijos, "Ary" y "ity" Adicionalmente por ejemplo, toma dos argumentos, y asi se define como una funcion binaria o una funcion de aridad dos. Tal funcion a veces puede ser llamada "diadica" por personas que prefieren las raices griegas al latín. Del mismo modo, una funcion que toma un numero variable de argumentos se denomina "variadic", mientras que una funcion binaria solamente toma dos y nada mas que dos argumentos. Vea mas adelante curring y aplicacion parcial.
+
 
 ```js
 const sum = (a, b) => a + b
@@ -73,9 +76,9 @@ console.log(arity) // 2
 // The arity of sum is 2
 ```
 
-## Higher-Order Functions (HOF)
+## Funciones de Orden Superior (HOF)
 
-A function which takes a function as an argument and/or returns a function.
+Funcion que toma una funcion como argumento y puede o no retornar una funcion.
 
 ```js
 const filter = (predicate, xs) => {
@@ -97,42 +100,40 @@ const is = (type) => (x) => Object(x) instanceof type
 filter(is(Number), [0, '1', 2, null]) // [0, 2]
 ```
 
-## Partial Application
+## Aplicacion parcial.
 
-Partially applying a function means creating a new function by pre-filling some of the arguments to the original function.
+Aplicar parcialmente una funcion, significa crear una nueva funcion rellenando previamente alguno de los argumentos de la funcion original.
 
 
 ```js
-// Helper to create partially applied functions
-// Takes a function and some arguments
+// Ayudante para creaqr funciones parcialmente aplicadas.
+// Toma una funcion y algunos argumentos.
 const partial = (f, ...args) =>
-  // returns a function that takes the rest of the arguments
+  // retorna una funcion que toma el resto de los argumentos.
   (...moreArgs) =>
-    // and calls the original function with all of them
+    // y llama a la funcion original con todos ellos.
     f(...args, ...moreArgs)
 
-// Something to apply
+// Algo para aplicar.
 const add3 = (a, b, c) => a + b + c
 
-// Partially applying `2` and `3` to `add3` gives you a one-argument function
+// Parcialmente aplica  `2` y `3` a `add3` obteniendo una funcion de un solo argumento ( funcion unaria o de aridad 1 )
 const fivePlus = partial(add3, 2, 3) // (c) => 2 + 3 + c
 
 fivePlus(4) // 9
 ```
-
-You can also use `Function.prototype.bind` to partially apply a function in JS:
+Tambien puede utilizar `Function.prototype.bind` para aplicar parcialmente una funcion en JavaScript.
 
 ```js
 const add1More = add3.bind(null, 2, 3) // (c) => 2 + 3 + c
 ```
-
-Partial application helps create simpler functions from more complex ones by baking in data when you have it. [Curried](#currying) functions are automatically partially applied.
+La aplicacion parcial ayuda a crear funciones mas simples a partir de funciones mas complejas mediante la adicion de sus datos cuando los tenga. Las funciones [curri]((#currying)) se aplican parcialmente de forma automatica.
 
 ## Currying
 
-The process of converting a function that takes multiple arguments into a function that takes them one at a time.
+El proceso de convertir una funcion que toma multiples argumentos, en una funcion que los toma uno a la vez.
 
-Each time the function is called it only accepts one argument and returns a function that takes one argument until all arguments are passed.
+Cada vez que la funcion es llamada, esta solamente acepta un argumento y retorna una funcion que toma el siguiente argumento y asi continua hasta que se pasen todos los argumentos.
 
 ```js
 const sum = (a, b) => a + b
@@ -148,9 +149,9 @@ add2(10) // 12
 ```
 
 ## Auto Currying
-Transforming a function that takes multiple arguments into one that if given less than its correct number of arguments returns a function that takes the rest. When the function gets the correct number of arguments it is then evaluated.
+Transforma una funcion que toma multiples argumentos en una funcion que, si se le da un numero menor de argumentos de los que espera, devuelve una funcion que toma el resto. Cuando la funcion obtiene el numero completo de argumentos se evalua.
 
-Underscore, lodash, and ramda have a `curry` function that works this way.
+Underscore, lodash, y ramda tienen una funcion `curry` que trabaja de esta manera.
 
 ```js
 const add = (x, y) => x + y
@@ -161,17 +162,18 @@ curriedAdd(1) // (y) => 1 + y
 curriedAdd(1)(2) // 3
 ```
 
-__Further reading__
+__Otras lecturas__
 * [Favoring Curry](http://fr.umio.us/favoring-curry/)
 * [Hey Underscore, You're Doing It Wrong!](https://www.youtube.com/watch?v=m3svKOdZijA)
 
-## Function Composition
+## Composición Funcional
 
-The act of putting two functions together to form a third function where the output of one function is the input of the other.
+Componer funciones es el acto de poner 2 funciones juntas para formar una tercera funcion donde la salida de una es la entrada de la otra.
 
 ```js
-const compose = (f, g) => (a) => f(g(a)) // Definition
-const floorAndToString = compose((val) => val.toString(), Math.floor) // Usage
+const compose = (f,g) => (argumentos) => f(g(argumentos)) // Definicion
+const toString = (val) => val.toString()
+const floorAndToString = compose(toString, Math.floor);
 floorAndToString(121.212121) // '121'
 ```
 
