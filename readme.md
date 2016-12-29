@@ -325,22 +325,23 @@ john.age + five === ({name: 'John', age: 30}).age + (5)
 
 ## Funtor
 
-An object that implements a `map` function which, while running over each value in the object to produce a new object, adheres to two rules:
+Un objeto que implementa una funcion llamada `map` que, mientras se ejecuta sobre cada valor en el objeto para producir un nuevo objeto, a adhiere a 2 reglas.
 
-### Preserves identity
+
+### Preserva la identidad
 ```
 object.map(x => x) ≍ object
 ```
 
-### Composable
+### Es componible
 
 ```
 object.map(compose(f, g)) ≍ object.map(g).map(f)
 ```
 
-(`f`, `g` be arbitrary functions)
+(`f`, `g` son funciones arbitrarias)
 
-A common functor in JavaScript is `Array` since it abides to the two functor rules:
+Un functor comun en JavaScript es `Array` ya que cumple con las dos reglas de los funtores:
 
 ```js
 [1, 2, 3].map(x => x) // = [1, 2, 3]
@@ -356,20 +357,20 @@ const g = x => x * 2
 ;[1, 2, 3].map(g).map(f)     // = [3, 5, 7]
 ```
 
-## Pointed Functor
-An object with an `of` function that puts _any_ single value into it.
+## Funtor apuntado
+Un objeto con una funcion `of` que pone un solo valor dentro del functor.
 
-ES2015 adds `Array.of` making arrays a pointed functor.
+ES2015 agrega `Array.of` para hacer al tipo Array un funtor apuntado.
 
 ```js
 Array.of(1) // [1]
 ```
 
-## Lift
+## Elevar (lift)
 
-Lifting is when you take a value and put it into an object like a [functor](#pointed-functor). If you lift a function into an [Applicative Functor](#applicative-functor) then you can make it work on values that are also in that functor.
+Lifting (elevar) es cuando usted toma un valor y lo pone en un objeto como un [functor](#pointed-functor). Si usted eleva una funcion en un [funtor aplicativo](#applicative-functor), entonces puede hacer que funcione en valores que tambien estan en ese funtor.
 
-Some implementations have a function called `lift`, or `liftA2` to make it easier to run functions on functors.
+Algunas implementaciones tienen una funcion llamada `lift` o `liftA2` para facilitar la ejecucion de funciones en los funtores
 
 ```js
 const liftA2 = (f) => (a, b) => a.map(f).ap(b) // note it's `ap` and not `map`.
@@ -381,8 +382,7 @@ const liftedMult = liftA2(mult) // this function now works on functors like arra
 liftedMult([1, 2], [3]) // [3, 6]
 liftA2((a, b) => a + b)([1, 2], [3, 4]) // [4, 5, 5, 6]
 ```
-
-Lifting a one-argument function and applying it does the same thing as `map`.
+Elevar una funcion de un argumento y aplicarla, hace lo mismo que `map`.
 
 ```js
 const increment = (x) => x + 1
@@ -392,23 +392,21 @@ lift(increment)([2]) // [3]
 ```
 
 
-## Referential Transparency
+## Transparencia Referencial
 
-An expression that can be replaced with its value without changing the
-behavior of the program is said to be referentially transparent.
+Se dice que una expresion que puede ser cambiada por su valor sin alterar el comportamiento del programa es referencialmente transparente.
 
-Say we have function greet:
+Supongamos que tenemos una funcion greet.
 
 ```js
 const greet = () => 'Hello World!'
 ```
 
-Any invocation of `greet()` can be replaced with `Hello World!` hence greet is
-referentially transparent.
+Cualquier invocacion de `greet()` puede ser reemplazada por `Hello World!`, por lo tanto greet es referencialmente transparente.
 
-##  Equational Reasoning
+##  Razonamiento Equacional.
 
-When an application is composed of expressions and devoid of side effects, truths about the system can be derived from the parts.
+Cuando una aplicacion esta compuesta de expresiones y carece de efectos secundarios, las verdades sobre el sistema se pueden derivar de las partes.
 
 ## Lambda
 
