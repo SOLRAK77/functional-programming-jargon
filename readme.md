@@ -727,9 +727,11 @@ Se llama un producto porque el total de valores posibles de la estructura de dat
 Vease tambien [Teoria de conjuntos](https://en.wikipedia.org/wiki/Set_theory).
 
 ## Opcional
-Option is a [union type](#union-type) with two cases often called `Some` and `None`.
 
-Option is useful for composing functions that might not return a value.
+Option es un [tipo de union](#union-type) con dos casos, a menudo llamados `Some` y `None`.
+
+Option es util para componer funciones que no retornen un valor.
+
 
 ```js
 // Naive definition
@@ -756,7 +758,8 @@ const None = () => ({
 // maybeProp :: (String, {a}) -> Option a
 const maybeProp = (key, obj) => typeof obj[key] === 'undefined' ? None() : Some(obj[key])
 ```
-Use `chain` to sequence functions that return `Option`s
+Utilice `chain` para secuenciar funciones que retornan `Option`s
+
 ```js
 
 // getItem :: Cart -> Option CartItem
@@ -773,9 +776,9 @@ getNestedPrice({item: {foo: 1}}) // None()
 getNestedPrice({item: {price: 9.99}}) // Some(9.99)
 ```
 
-`Option` is also known as `Maybe`. `Some` is sometimes called `Just`. `None` is sometimes called `Nothing`.
+`Option` a menudo tambien es conocido como `Maybe`. `Some` es algunas veces llamado `Just`. y `None` es algunas veces llamado  `Nothing`.
 
-## Functional Programming Libraries in JavaScript
+## Librerias para la Programacion Funcional en JavaScriṕt.
 
 * [Ramda](https://github.com/ramda/ramda)
 * [Folktale](http://folktalejs.org)
@@ -788,4 +791,4 @@ getNestedPrice({item: {price: 9.99}}) // Some(9.99)
 
 ---
 
-__P.S:__ This repo is successful due to the wonderful [contributions](https://github.com/hemanth/functional-programming-jargon/graphs/contributors)!
+__P.S:__ Este repositorio es exitoso debido a las maravillosas [contribuciones](https://github.com/hemanth/functional-programming-jargon/graphs/contributors)!
