@@ -641,15 +641,15 @@ Array.prototype.equals = (arr) => {
 
 ## Semigrupo
 
-An object that has a `concat` function that combines it with another object of the same type.
+Objeto que tiene una funcion `concat` que la combina con otro objeto del mismo tipo.
 
 ```js
 ;[1].concat([2]) // [1, 2]
 ```
 
-## Foldable
+## Plegable
 
-An object that has a `reduce` function that can transform that object into some other type.
+Objeto que tiene una funcion `reduce` que puede transformar ese objeto en otro tipo.
 
 ```js
 const sum = (list) => list.reduce((acc, val) => acc + val, 0)
@@ -660,11 +660,10 @@ sum([1, 2, 3]) // 6
 
 TODO
 
-## Type Signatures
+## Signatura de tipos.
+A menudo, las funciones en JavaScript incluiran comentarios que indican los tipos de sus argumentos y valores de retorno.
 
-Often functions in JavaScript will include comments that indicate the types of their arguments and return values.
-
-There's quite a bit of variance across the community but they often follow the following patterns:
+Hay un poco de variación en la comunidad, pero a menudo se suelen seguir los siguientes patrones:
 
 ```js
 // functionName :: firstArgType -> secondArgType -> returnType
@@ -676,26 +675,27 @@ const add = (x) => (y) => x + y
 const increment = (x) => x + 1
 ```
 
-If a function accepts another function as an argument it is wrapped in parentheses.
+Si una funcion acepta otra funcion como argumento, esta se envuelve entre parentesis.
 
 ```js
 // call :: (a -> b) -> a -> b
 const call = (f) => (x) => f(x)
 ```
 
-The letters `a`, `b`, `c`, `d` are used to signify that the argument can be of any type. The following version of `map` takes a function that transforms a value of some type `a` into another type `b`, an array of values of type `a`, and returns an array of values of type `b`.
+Las letras `a`, `b`, `c`, `d` son usadas para indicar que el argumento puede ser de cualquier tipo. La siguiente version de `map` toma una funcion que transforma un valor de algun tipo `a` en otro valor de tipo `b`, un array de valores de tipo `a`, y retorna una matriz de valores de tipo `b`.
 
 ```js
 // map :: (a -> b) -> [a] -> [b]
 const map = (f) => (list) => list.map(f)
 ```
 
-__Further reading__
+__Otras lecturas__
 * [Ramda's type signatures](https://github.com/ramda/ramda/wiki/Type-Signatures)
 * [Mostly Adequate Guide](https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch7.html#whats-your-type)
-* [What is Hindley-Milner?](http://stackoverflow.com/a/399392/22425) on Stack Overflow
+* [What is Hindley-Milner?](http://stackoverflow.com/a/399392/22425) en Stack Overflow
 
-## Union type
+## Tipos de Union
+
 A union type is the combination of two types together into another one.
 
 JS doesn't have static types but let's say we invent a type `NumOrString` which is a sum of `String` and `Number`.
