@@ -62,7 +62,7 @@ __Tabla de Contenido__
 
 <!-- /RM -->
 
-## Arity
+## Aridad
 
 El numero de argumentos que una funcion toma. utiliza terminos como unario, binario, ternario etc. Esta pablabra tiene la distincion de estar compuesta de dos sufijos, "Ary" y "ity" Adicionalmente por ejemplo, toma dos argumentos, y asi se define como una funcion binaria o una funcion de aridad dos. Tal funcion a veces puede ser llamada "diadica" por personas que prefieren las raices griegas al latín. Del mismo modo, una funcion que toma un numero variable de argumentos se denomina "variadic", mientras que una funcion binaria solamente toma dos y nada mas que dos argumentos. Vea mas adelante curring y aplicacion parcial.
 
@@ -177,7 +177,7 @@ const floorAndToString = compose(toString, Math.floor);
 floorAndToString(121.212121) // '121'
 ```
 
-## Purity
+## Pureza
 
 Una funcion es pura si el valor de retorno es determinado solamente por sus valores de entrada, y no produce efectos secundarios.
 
@@ -432,11 +432,13 @@ const add1 = (a) => a + 1
 ```
 
 ## Lambda Calculus
+
 Una rama de las matematicas que utiliza funciones para crear un [modelo universal de computacion](https://en.wikipedia.org/wiki/Lambda_calculus).
 
 ## Evaluacion Perezosa
 
-Lazy evaluation is a call-by-need evaluation mechanism that delays the evaluation of an expression until its value is needed. In functional languages, this allows for structures like infinite lists, which would not normally be available in an imperative language where the sequencing of commands is significant.
+La evaluación perezosa es un mecanismo de evaluacion llamado por necesidad, este retrasa la evaluacion de una expresion hasta que su valor sea necesario.
+En lenguajes funcionales, esto permite estructuras como listas infinitas, que normalmente no estarian disponible en un lenguaje imperativo donde la secuencia de comandos es significativa.
 
 ```js
 const rand = function*() {
@@ -448,57 +450,58 @@ const rand = function*() {
 
 ```js
 const randIter = rand()
-randIter.next() // Each execution gives a random value, expression is evaluated on need.
+randIter.next() // Cada ejecucion obtiene un valor aleatorio, la expresion es evaluada por necesidad.
 ```
 
-## Monoid
+## Monoide
 
-An object with a function that "combines" that object with another of the same type.
+Objeto con una funcion que "combina" ese objeto con otro del mismo tipo.
 
-One simple monoid is the addition of numbers:
+Un simple monoide es la suma de numeros.
 
 ```js
 1 + 1 // 2
 ```
-In this case number is the object and `+` is the function.
 
-An "identity" value must also exist that when combined with a value doesn't change it.
+En este caso los numeros son los objetos y `+` es la funcion.
 
-The identity value for addition is `0`.
+Tambien debe existir un valor "identidad" que cuando se combina con un valor no lo cambia.
+
+El valor identidad para la suma es el  `0`.
 ```js
 1 + 0 // 1
 ```
 
-It's also required that the grouping of operations will not affect the result (associativity):
+Tambien es necesario que el agrupamiento de operaciones no altere el resultado (asociatividad).
 
 ```js
 1 + (2 + 3) === (1 + 2) + 3 // true
 ```
 
-Array concatenation also forms a monoid:
+La concatenacion de los Arrays tambien forma un monoide.
 
 ```js
 ;[1, 2].concat([3, 4]) // [1, 2, 3, 4]
 ```
 
-The identity value is empty array `[]`
+ El valor identidad es un array vacio `[]`.
 
 ```js
 ;[1, 2].concat([]) // [1, 2]
 ```
 
-If identity and compose functions are provided, functions themselves form a monoid:
+Si se proporcionan funciones de identidad y composicion, las funciones mismas forman un monoide:
 
 ```js
 const identity = (a) => a
 const compose = (f, g) => (x) => f(g(x))
 ```
-`foo` is any function that takes one argument.
+`foo` es cualquier funcion que toma un argumento.
 ```
 compose(foo, identity) ≍ compose(identity, foo) ≍ foo
 ```
 
-## Monad
+## Monada
 
 A monad is an object with [`of`](#pointed-functor) and `chain` functions. `chain` is like [`map`](#functor) except it un-nests the resulting nested object.
 
