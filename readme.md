@@ -1,5 +1,4 @@
-# Functional Programming Jargon
-#Programacion Funcional Jerga
+#Jerga de la programacion Funcional.
 
 La programacion funcional (FP) ofrece muchas ventajas, y como resultado su popularidad ha ido en aumento. Sin embargo, cada paradigma de programación viene con su propia jerga y la FP no es la excepción. Al proporcionar un glosario de terminos, esperamos hacer el aprendizaje de la programación funcional mas simple.
 
@@ -696,11 +695,11 @@ __Otras lecturas__
 
 ## Tipos de Union
 
-A union type is the combination of two types together into another one.
+Un tipo union es la combinación de dos tipos juntos en otro.
 
-JS doesn't have static types but let's say we invent a type `NumOrString` which is a sum of `String` and `Number`.
+JS no tiene tipos estaticos, pero supongamos que inventamos un tipo `NumOrString` que es la suma de `String` y `Number`.
 
-The `+` operator in JS works on strings and numbers so we can use this new type to describe its inputs and outputs:
+El operador `+` en JS trabaja en strings y numeros, entonces para poder usar este nuevo tipo, necesitamos describir sus entradas y salidas.
 
 ```js
 // add :: (NumOrString, NumOrString) -> NumOrString
@@ -711,23 +710,23 @@ add('Foo', 2) // Returns string "Foo2"
 add('Foo', 'Bar') // Returns string "FooBar"
 ```
 
-Union types are also known as algebraic types, tagged unions, or sum types.
+Los tipos de union tambien se conocen como tipos algebraicos, uniones marcadas o tipos de suma.
 
-There's a [couple](https://github.com/paldepind/union-type) [libraries](https://github.com/puffnfresh/daggy) in JS which help with defining and using union types.
+[Aqui](https://github.com/paldepind/union-type) hay un par de [librerias](https://github.com/puffnfresh/daggy) en JavaScript que ayudan a definir y a usar tipos de union.
 
-## Product type
+## Tipos de producto.
 
-A **product** type combines types together in a way you're probably more familiar with:
+Un tipo **producto** combina tipos de una manera que probablemente este mas familiarizado con:
 
 ```js
 // point :: (Number, Number) -> {x: Number, y: Number}
 const point = (x, y) => ({x: x, y: y})
 ```
-It's called a product because the total possible values of the data structure is the product of the different values.
+Se llama un producto porque el total de valores posibles de la estructura de datos es el producto de los diferentes valores.
 
-See also [Set theory](https://en.wikipedia.org/wiki/Set_theory).
+Vease tambien [Teoria de conjuntos](https://en.wikipedia.org/wiki/Set_theory).
 
-## Option
+## Opcional
 Option is a [union type](#union-type) with two cases often called `Some` and `None`.
 
 Option is useful for composing functions that might not return a value.
