@@ -44,7 +44,7 @@ __Tabla de Contenido__
 * [Evaluación Perezosa](#lazy-evaluation)
 * [Monoide](#monoid)
 * [Monada](#monad)
-* [Comonada](#comonad)
+* [Co-mónada](#comonad)
 * [Funtor Aplicativo](#applicative-functor)
 * [Morfismo](#morphism)
   * [Endomorfismo](#endomorphism)
@@ -503,27 +503,27 @@ compose(foo, identity) ≍ compose(identity, foo) ≍ foo
 
 ## Monada
 
-A monad is an object with [`of`](#pointed-functor) and `chain` functions. `chain` is like [`map`](#functor) except it un-nests the resulting nested object.
+Una monada es un objeto con dos funciones [`of`](#pointed-functor) y `chain`, `chain`  es similar a map excepto que anula el objeto anidado resultante.
 
 ```js
-// Implementation
+// Implementación
 Array.prototype.chain = function (f) {
   return this.reduce((acc, it) => acc.concat(f(it)), [])
 }
 
-// Usage
+// Forma de uso.
 ;Array.of('cat,dog', 'fish,bird').chain((a) => a.split(',')) // ['cat', 'dog', 'fish', 'bird']
 
-// Contrast to map
+// En cambio con map.
 ;Array.of('cat,dog', 'fish,bird').map((a) => a.split(',')) // [['cat', 'dog'], ['fish', 'bird']]
 ```
 
-`of` is also known as `return` in other functional languages.
-`chain` is also known as `flatmap` and `bind` in other languages.
+`of` tambien es conocido como `return` en otros lenguajes funcionales.
+`chain` tambien se conoce como `flatmap` o `bind` en otros lenguajes.
 
-## Comonad
+## Co-mónada
 
-An object that has `extract` and `extend` functions.
+Una comonada es una monada que implementa las funciones `extract` y `extend`.
 
 ```js
 const CoIdentity = (v) => ({
@@ -537,58 +537,58 @@ const CoIdentity = (v) => ({
 })
 ```
 
-Extract takes a value out of a functor.
+Extract toma un valor fuera de un functor.
 
 ```js
 CoIdentity(1).extract() // 1
 ```
 
-Extend runs a function on the comonad. The function should return the same type as the comonad.
+Extend ejecuta una función en el co-monad. La funcion deve devolver el mismo tipo que el co-monad.
 
 ```js
 CoIdentity(1).extend((co) => co.extract() + 1) // CoIdentity(2)
 ```
 
-## Applicative Functor
+## Funtor Aplicativo.
 
-An applicative functor is an object with an `ap` function. `ap` applies a function in the object to a value in another object of the same type.
+Un functor aplicativo es un objeto con una funcion `ap`. `ap` aplica una funcion en el objeto a un valor en otro objeto del mismo tipo.
 
 ```js
-// Implementation
+// Implementación
 Array.prototype.ap = function (xs) {
   return this.reduce((acc, f) => acc.concat(xs.map(f)), [])
 }
 
-// Example usage
+// Ejemplo de uso:
 ;[(a) => a + 1].ap([1]) // [2]
 ```
 
-This is useful if you have two objects and you want to apply a binary function to their contents.
+Esto es especialmente util, si se tiene 2 objetos y se desea aplicar una funcion binaria a su contenido.
 
 ```js
-// Arrays that you want to combine
+// Arrays que buscamos combinar.
 const arg1 = [1, 3]
 const arg2 = [4, 5]
 
-// combining function - must be curried for this to work
+// Funcion de combinacion- debe ser curry para que esto funcione.
 const add = (x) => (y) => x + y
 
 const partiallyAppliedAdds = [add].ap(arg1) // [(y) => 1 + y, (y) => 3 + y]
 ```
 
-This gives you an array of functions that you can call `ap` on to get the result:
+Esto nos da un array de funciones que podemos llamar a trabes del metodo `ap` para obtener el resultado:
 
 ```js
 partiallyAppliedAdds.ap(arg2) // [5, 6, 7, 8]
 ```
 
-## Morphism
+## Morfismo
 
-A transformation function.
+Una funcion de transformación.
 
-### Endomorphism
+### Endomorfismo
 
-A function where the input type is the same as the output.
+Una funcion donde el tipo de entrada es el mismo que el de salida.
 
 ```js
 // uppercase :: String -> String
@@ -598,14 +598,14 @@ const uppercase = (str) => str.toUpperCase()
 const decrement = (x) => x - 1
 ```
 
-### Isomorphism
+### Isomorfismo
 
-A pair of transformations between 2 types of objects that is structural in nature and no data is lost.
+Un par de transformaciones entre 2 tipos de objetos de naturaleza estructural y donde no se pierden datos.
 
-For example, 2D coordinates could be stored as an array `[2,3]` or object `{x: 2, y: 3}`.
+Por ejemplo, las coordenadas 2D podrian ser almacenadas como un array `[2,3]` o como un objeto `{x: 2, y: 3}`,
 
 ```js
-// Providing functions to convert in both directions makes them isomorphic.
+// Proporcionar funciones para convertirlas en ambas direcciones hace que sea isomorfas.
 const pairToCoords = (pair) => ({x: pair[0], y: pair[1]})
 
 const coordsToPair = (coords) => [coords.x, coords.y]
@@ -615,13 +615,11 @@ coordsToPair(pairToCoords([1, 2])) // [1, 2]
 pairToCoords(coordsToPair({x: 1, y: 2})) // {x: 1, y: 2}
 ```
 
+## Setoide
 
+Un objeto que tiene una funcion `equals` que puede utilizarse para comparar otros objetos del mismo tipo.
 
-## Setoid
-
-An object that has an `equals` function which can be used to compare other objects of the same type.
-
-Make array a setoid:
+Transformemos el Array en un setoide:
 
 ```js
 Array.prototype.equals = (arr) => {
@@ -641,7 +639,7 @@ Array.prototype.equals = (arr) => {
 ;[1, 2].equals([0]) // false
 ```
 
-## Semigroup
+## Semigrupo
 
 An object that has a `concat` function that combines it with another object of the same type.
 
