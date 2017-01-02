@@ -21,6 +21,7 @@ __Tabla de Contenido__
 * [Currying](#currying)
 * [Auto Currying](#auto-currying)
 * [Composición funcional](#function-composition)
+* [Continuación](#function-composition)
 * [Pureza](#purity)
 * [Efectos secundarios](#side-effects)
 * [Idempotente](#idempotent)
@@ -174,6 +175,36 @@ const compose = (f,g) => (argumentos) => f(g(argumentos)) // Definicion
 const toString = (val) => val.toString()
 const floorAndToString = compose(toString, Math.floor);
 floorAndToString(121.212121) // '121'
+```
+
+## Continuación
+En cualquier punto dado de un programa, la parte del codigo que aun esta por ejecutarse se conoce como continuación.
+
+```js
+const printAsString = (num) => console.log(`Dado ${num}`)
+
+const addOneAndContinue = (num, cc) => {
+  const result = num + 1
+  cc(result)
+}
+
+addOneAndContinue(2, printAsString) // 'Dado 3'
+```
+
+Las continuaciones se ven a menudo en la programacion asyncrona, cuando el programa necesita esperar a recibir datos antes de que pueda continuar. La respuesta a menudo se pasa al resto del programa, que es la continuacion, una vez que se ha recibido.
+
+```js
+const continueProgramWith = (data) => {
+  // Continues program with data
+}
+
+readFileAsync('path/to/file', (err, response) => {
+  if (err) {
+    // handle error
+    return
+  }
+  continueProgramWith(response)
+})
 ```
 
 ## Pureza
