@@ -1,12 +1,12 @@
 #Jerga de la programacion Funcional.
 
-La programacion funcional (FP) ofrece muchas ventajas, y como resultado su popularidad ha ido en aumento. Sin embargo, cada paradigma de programación viene con su propia jerga y la FP no es la excepción. Al proporcionar un glosario de terminos, esperamos hacer el aprendizaje de la programación funcional mas simple.
+La programación funcional (FP) ofrece muchas ventajas, y como resultado su popularidad ha ido en aumento. Sin embargo, cada paradigma de programación viene con su propia jerga y la FP no es la excepción. Al proporcionar un glosario de términos, esperamos hacer el aprendizaje de la programación funcional mas simple.
 
-Los ejemplos se presentan usando la syntaxis de JavaScript 2015 (ES2015) [Why JavaScript?](https://github.com/hemanth/functional-programming-jargon/wiki/Why-JavaScript%3F)
+Los ejemplos se presentan usando la sintaxis de JavaScript 2015 (ES2015) [Why JavaScript?](https://github.com/hemanth/functional-programming-jargon/wiki/Why-JavaScript%3F)
 
 *Este es un [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); por fabor sientase libre de enviarnos un PR ;)*
 
-Cuando sea necesario, este documento usara terminos definidos en la especificacion de [Fantasy Land spec](https://github.com/fantasyland/fantasy-land)
+Cuando sea necesario, este documento usara términos definidos en la especificación de [Fantasy Land spec](https://github.com/fantasyland/fantasy-land)
 
 __Traducciones__
 * [Portuguese](https://github.com/alexmoreno/jargoes-programacao-funcional)
@@ -17,18 +17,19 @@ __Tabla de Contenido__
 
 * [Aridad](#arity)
 * [Funciones de orden superior (HOF)](#higher-order-functions-hof)
-* [Aplicacion parcial](#partial-application)
+* [Aplicación parcial](#partial-application)
 * [Currying](#currying)
 * [Auto Currying](#auto-currying)
-* [Composicion funcional](#function-composition)
+* [Composición funcional](#function-composition)
+* [Continuación](#function-composition)
 * [Pureza](#purity)
 * [Efectos secundarios](#side-effects)
 * [Idempotente](#idempotent)
-* [Estilo de punto libre o programacion tacita](#point-free-style)
+* [Estilo de punto libre o programación tacita](#point-free-style)
 * [Predicado](#predicate)
 * [Contratos](#contracts)
 * [Funciones guardas](#guarded-functions)
-* [Categorias](#categories)
+* [Categorías](#categories)
 * [Valor](#value)
 * [Constante](#constant)
 * [Funtor](#functor)
@@ -53,17 +54,17 @@ __Tabla de Contenido__
 * [Plegable](#foldable)
 * [Traversable](#traversable)
 * [Signatura de tipos](#type-signatures)
-* [Tipos de union](#union-type)
+* [Tipos de unión](#union-type)
 * [Tipos de producto](#product-type)
 * [Opcional](#option)
-* [Librerias para la programación funcional en JavaScript](#functional-programming-libraries-in-javascript)
+* [Librerías para la programación funcional en JavaScript](#functional-programming-libraries-in-javascript)
 
 
 <!-- /RM -->
 
 ## Aridad
 
-El numero de argumentos que una funcion toma. utiliza terminos como unario, binario, ternario etc. Esta pablabra tiene la distincion de estar compuesta de dos sufijos, "Ary" y "ity" Adicionalmente por ejemplo, toma dos argumentos, y asi se define como una funcion binaria o una funcion de aridad dos. Tal funcion a veces puede ser llamada "diadica" por personas que prefieren las raices griegas al latín. Del mismo modo, una funcion que toma un numero variable de argumentos se denomina "variadic", mientras que una funcion binaria solamente toma dos y nada mas que dos argumentos. Vea mas adelante curring y aplicacion parcial.
+El numero de argumentos que una función toma. Utiliza términos como unario, binario, ternario etc. Esta palabra tiene la distinción de estar compuesta de dos sufijos, "Ary" y "ity" Adicionalmente por ejemplo, toma dos argumentos, y así se define como una función binaria o una función de aridad dos. Tal función a veces puede ser llamada "diadica" por personas que prefieren las raíces griegas al latín. Del mismo modo, una función que toma un numero variable de argumentos se denomina "variadic", mientras que una función binaria solamente toma dos y nada mas que dos argumentos. Vea mas adelante curring y aplicación parcial.
 
 
 ```js
@@ -174,6 +175,36 @@ const compose = (f,g) => (argumentos) => f(g(argumentos)) // Definicion
 const toString = (val) => val.toString()
 const floorAndToString = compose(toString, Math.floor);
 floorAndToString(121.212121) // '121'
+```
+
+## Continuación
+En cualquier punto dado de un programa, la parte del codigo que aun esta por ejecutarse se conoce como continuación.
+
+```js
+const printAsString = (num) => console.log(`Dado ${num}`)
+
+const addOneAndContinue = (num, cc) => {
+  const result = num + 1
+  cc(result)
+}
+
+addOneAndContinue(2, printAsString) // 'Dado 3'
+```
+
+Las continuaciones se ven a menudo en la programacion asyncrona, cuando el programa necesita esperar a recibir datos antes de que pueda continuar. La respuesta a menudo se pasa al resto del programa, que es la continuacion, una vez que se ha recibido.
+
+```js
+const continueProgramWith = (data) => {
+  // Continues program with data
+}
+
+readFileAsync('path/to/file', (err, response) => {
+  if (err) {
+    // handle error
+    return
+  }
+  continueProgramWith(response)
+})
 ```
 
 ## Pureza
