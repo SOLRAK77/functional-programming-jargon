@@ -780,6 +780,7 @@ getNestedPrice({item: {price: 9.99}}) // Some(9.99)
 
 ## Librerias para la Programacion Funcional en JavaScriṕt.
 
+* [mori](https://github.com/swannodette/mori)
 * [Ramda](https://github.com/ramda/ramda)
 * [Folktale](http://folktalejs.org)
 * [monet.js](https://cwmyers.github.io/monet.js/)
