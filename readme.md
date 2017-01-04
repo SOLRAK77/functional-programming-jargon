@@ -581,7 +581,39 @@ CoIdentity(1).extend((co) => co.extract() + 1) // CoIdentity(2)
 
 ## Funtor Aplicativo.
 
-Un functor aplicativo es un objeto con una funcion `ap`. `ap` aplica una funcion en el objeto a un valor en otro objeto del mismo tipo.
+Un functor aplicativo es un functor con una funcion `ap`. Esa funcion `ap` lo que hace es aplicar una funcion en el functor a un valor en otro functor del mismo tipo.
+
+Un ejemplo básico puede ser este:
+```js
+//Constructor
+var Functor = function(value) {
+  this.__value = value;
+}
+
+//Pointed Functor.
+Functor.of = function(value) {
+  return new Functor(value);
+}
+Functor.prototype.map = function(fn) {
+  return Functor.of(fn(this.__value));
+}
+
+//Aplicative Functor.
+Functor.prototype.ap = function(another_functor) {
+  return another_functor.map(this.__value);
+}
+
+//Dummy function
+multiply = (x) => (y) => x * y
+
+let result = Functor.of(multiply)
+                    .ap(Functor.of(10))
+                    .ap(Functor.of(30))
+
+console.log(result) // Functor { __value: 300 }
+
+```
+Con otro ejemplo, vemos claramente como podemos utilizar este tipo de functores con `Array`s.
 
 ```js
 // Implementación
