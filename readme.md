@@ -841,7 +841,7 @@ getNestedPrice({item: {price: 9.99}}) // Some(9.99)
 
 `Option` a menudo tambien es conocido como `Maybe`. `Some` es algunas veces llamado `Just`. y `None` es algunas veces llamado  `Nothing`.
 
-## Librerias para la Programacion Funcional en JavaScriṕt.
+## Librerias para la Programacion Funcional en JavaScript.
 
 * [mori](https://github.com/swannodette/mori)
 * [Ramda](https://github.com/ramda/ramda)
