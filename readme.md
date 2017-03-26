@@ -1,18 +1,14 @@
-#Jerga de la programacion Funcional.
+# Glosario de la Programacion Funcional.
 
 La programación funcional (FP) ofrece muchas ventajas, y como resultado su popularidad ha ido en aumento. Sin embargo, cada paradigma de programación viene con su propia jerga y la FP no es la excepción. Al proporcionar un glosario de términos, esperamos hacer el aprendizaje de la programación funcional mas simple.
 
 Los ejemplos se presentan usando la sintaxis de JavaScript 2015 (ES2015) [Why JavaScript?](https://github.com/hemanth/functional-programming-jargon/wiki/Why-JavaScript%3F)
 
-*Este es un [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); por fabor sientase libre de enviarnos un PR ;)*
+*Este es un [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); por favor sientase libre de enviarnos un PR ;)*
 
 Cuando sea necesario, este documento usara términos definidos en la especificación de [Fantasy Land spec](https://github.com/fantasyland/fantasy-land)
 
-__Traducciones__
-* [Portuguese](https://github.com/alexmoreno/jargoes-programacao-funcional)
-* [Spanish](https://github.com/idcmardelplata/functional-programming-jargon)
-
-__Tabla de Contenido__
+## Tabla de Contenido
 <!-- RM(noparent,notop) -->
 
 * [Aridad](#arity)
