@@ -17,15 +17,15 @@ Cuando sea necesario, este documento usara términos definidos en la especificac
 * [Currying](#currying)
 * [Auto Currying](#auto-currying)
 * [Composición funcional](#composición-funcional)
-* [Continuación](#continuacion)
+* [Continuación](#continuación)
 * [Pureza](#pureza)
 * [Efectos secundarios](#efectos-secundarios)
 * [Idempotente](#idempotente)
-* [Estilo de punto libre o programación tacita](#estilo-de-punto-libre-o-programacion-tacita)
+* [Estilo de punto libre o programación tacita](#estilo-de-punto-libre-o-programación-tacita)
 * [Predicado](#predicado)
 * [Contratos](#contratos)
 * [Funciones guardas](#funciones-guardas)
-* [Categorías](#categorias)
+* [Categorías](#categorías)
 * [Valor](#valor)
 * [Constante](#constante)
 * [Functor](#functor)
@@ -36,11 +36,11 @@ Cuando sea necesario, este documento usara términos definidos en la especificac
 * [Transparencia referencial](#transparencia-referencial)
 * [Razonamiento equacional](#razonamiento-equacional)
 * [Lambda](#lambda)
-* [Calculo Lambda](#calculo-lambda)
-* [Evaluación Perezosa](#evaluacion-perezosa)
+* [Cálculo Lambda](#cálculo-lambda)
+* [Evaluación Perezosa](#evaluación-perezosa)
 * [Monoide](#monoide)
-* [Monada](#monada)
-* [Co-mónada](#comonada)
+* [Mónada](#mónada)
+* [Co-mónada](#comónada)
 * [Functor Aplicativo](#functor-aplicativo)
 * [Morfismo](#morfismo)
   * [Endomorfismo](#endomorfismo)
@@ -53,7 +53,7 @@ Cuando sea necesario, este documento usara términos definidos en la especificac
 * [Tipos de unión](#tipos-de-union)
 * [Tipos de producto](#tipos-de-producto)
 * [Opcional](#opcional)
-* [Librerías para la programación funcional en JavaScript](#librerias-de-la-programacion-funcional-en-javascript)
+* [Librerías para la programación funcional en JavaScript](#librerías-para-la-programación-funcional-en-javascript)
 
 
 <!-- /RM -->
@@ -457,7 +457,7 @@ Tambien puede asignarse una funcion lambda a una variable.
 const add1 = (a) => a + 1
 ```
 
-## Lambda Calculus
+## Cálculo Lambda
 
 Una rama de las matematicas que utiliza funciones para crear un [modelo universal de computacion](https://en.wikipedia.org/wiki/Lambda_calculus).
 
@@ -527,7 +527,7 @@ const compose = (f, g) => (x) => f(g(x))
 compose(foo, identity) ≍ compose(identity, foo) ≍ foo
 ```
 
-## Monada
+## Mónada
 
 Una monada es un objeto con dos funciones [`of`](#pointed-functor) y `chain`, `chain`  es similar a map excepto que anula el objeto anidado resultante.
 
@@ -837,7 +837,7 @@ getNestedPrice({item: {price: 9.99}}) // Some(9.99)
 
 `Option` a menudo tambien es conocido como `Maybe`. `Some` es algunas veces llamado `Just`. y `None` es algunas veces llamado  `Nothing`.
 
-## Librerias para la Programacion Funcional en JavaScript.
+## Librerías para la Programación Funcional en JavaScript.
 
 * [mori](https://github.com/swannodette/mori)
 * [Ramda](https://github.com/ramda/ramda)
