@@ -1,4 +1,4 @@
-# Glosario de la Programacion Funcional.
+# Glosario de la Programación Funcional.
 
 La programación funcional (FP) ofrece muchas ventajas, y como resultado su popularidad ha ido en aumento. Sin embargo, cada paradigma de programación viene con su propia jerga y la FP no es la excepción. Al proporcionar un glosario de términos, esperamos hacer el aprendizaje de la programación funcional mas simple.
 
@@ -11,9 +11,9 @@ Cuando sea necesario, este documento usara términos definidos en la especificac
 ## Tabla de Contenido
 <!-- RM(noparent,notop) -->
 
-* [Aridad](#arity)
+* [Aridad](#aridad)
 * [Funciones de orden superior (HOF)](#funciones-de-orden-superior-hof)
-* [Aplicación parcial](#aplicacion-parcial)
+* [Aplicación parcial](#aplicación-parcial)
 * [Currying](#currying)
 * [Auto Currying](#auto-currying)
 * [Composición funcional](#composición-funcional)
@@ -96,7 +96,7 @@ const is = (type) => (x) => Object(x) instanceof type
 filter(is(Number), [0, '1', 2, null]) // [0, 2]
 ```
 
-## Aplicacion parcial.
+## Aplicación parcial.
 
 Aplicar parcialmente una funcion, significa crear una nueva funcion rellenando previamente alguno de los argumentos de la funcion original.
 
@@ -752,7 +752,7 @@ __Otras lecturas__
 * [Mostly Adequate Guide](https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch7.html#whats-your-type)
 * [What is Hindley-Milner?](http://stackoverflow.com/a/399392/22425) en Stack Overflow
 
-## Tipos de Union
+## Tipos de Unión
 
 Un tipo union es la combinación de dos tipos juntos en otro.
 
