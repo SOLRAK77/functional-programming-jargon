@@ -1,63 +1,59 @@
-#Jerga de la programacion Funcional.
+# Glosario de la Programación Funcional.
 
 La programación funcional (FP) ofrece muchas ventajas, y como resultado su popularidad ha ido en aumento. Sin embargo, cada paradigma de programación viene con su propia jerga y la FP no es la excepción. Al proporcionar un glosario de términos, esperamos hacer el aprendizaje de la programación funcional mas simple.
 
 Los ejemplos se presentan usando la sintaxis de JavaScript 2015 (ES2015) [Why JavaScript?](https://github.com/hemanth/functional-programming-jargon/wiki/Why-JavaScript%3F)
 
-*Este es un [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); por fabor sientase libre de enviarnos un PR ;)*
+*Este es un [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); por favor siéntase libre de enviarnos un PR ;)*
 
 Cuando sea necesario, este documento usara términos definidos en la especificación de [Fantasy Land spec](https://github.com/fantasyland/fantasy-land)
 
-__Traducciones__
-* [Portuguese](https://github.com/alexmoreno/jargoes-programacao-funcional)
-* [Spanish](https://github.com/idcmardelplata/functional-programming-jargon)
-
-__Tabla de Contenido__
+## Tabla de Contenido
 <!-- RM(noparent,notop) -->
 
-* [Aridad](#arity)
-* [Funciones de orden superior (HOF)](#higher-order-functions-hof)
-* [Aplicación parcial](#partial-application)
+* [Aridad](#aridad)
+* [Funciones de orden superior (HOF)](#funciones-de-orden-superior-hof)
+* [Aplicación parcial](#aplicación-parcial)
 * [Currying](#currying)
 * [Auto Currying](#auto-currying)
-* [Composición funcional](#function-composition)
-* [Continuación](#function-composition)
-* [Pureza](#purity)
-* [Efectos secundarios](#side-effects)
-* [Idempotente](#idempotent)
-* [Estilo de punto libre o programación tacita](#point-free-style)
-* [Predicado](#predicate)
-* [Contratos](#contracts)
-* [Funciones guardas](#guarded-functions)
-* [Categorías](#categories)
-* [Valor](#value)
-* [Constante](#constant)
-* [Funtor](#functor)
-  * [Preservar la identidad](#preserves-identity)
-  * [Componible](#composable)
-* [Functor apuntado](#pointed-functor)
-* [Elevar (lift)](#lift)
-* [Transparencia referencial](#referential-transparency)
-* [Razonamiento equacional](#equational-reasoning)
+* [Composición funcional](#composición-funcional)
+* [Continuación](#continuación)
+* [Pureza](#pureza)
+* [Efectos secundarios](#efectos-secundarios)
+* [Idempotente](#idempotente)
+* [Estilo de punto libre o programación tacita](#estilo-de-punto-libre-o-programación-tacita)
+* [Predicado](#predicado)
+* [Contratos](#contratos)
+* [Funciones guardas](#funciones-guardas)
+* [Categorías](#categorías)
+* [Valor](#valor)
+* [Constante](#constante)
+* [Functor](#functor)
+  * [Preservar la identidad](#preservar-la-identidad)
+  * [Componible](#componible)
+* [Functor apuntado](#functor-apuntado)
+* [Elevar (lift)](#elevar-lift)
+* [Transparencia referencial](#transparencia-referencial)
+* [Razonamiento equacional](#razonamiento-equacional)
 * [Lambda](#lambda)
-* [Calculo Lambda](#lambda-calculus)
-* [Evaluación Perezosa](#lazy-evaluation)
-* [Monoide](#monoid)
-* [Monada](#monad)
-* [Co-mónada](#comonad)
-* [Funtor Aplicativo](#applicative-functor)
-* [Morfismo](#morphism)
-  * [Endomorfismo](#endomorphism)
-  * [Isomorfismo](#isomorphism)
-* [Setoide](#setoid)
-* [Semigrupo](#semigroup)
-* [Plegable](#foldable)
+* [Cálculo Lambda](#cálculo-lambda)
+* [Evaluación Perezosa](#evaluación-perezosa)
+* [Monoide](#monoide)
+* [Mónada](#mónada)
+* [Co-mónada](#comónada)
+* [Functor Aplicativo](#functor-aplicativo)
+* [Morfismo](#morfismo)
+  * [Endomorfismo](#endomorfismo)
+  * [Isomorfismo](#isomorfismo)
+* [Setoide](#setoide)
+* [Semigrupo](#semigrupo)
+* [Plegable](#plegable)
 * [Traversable](#traversable)
-* [Signatura de tipos](#type-signatures)
-* [Tipos de unión](#union-type)
-* [Tipos de producto](#product-type)
-* [Opcional](#option)
-* [Librerías para la programación funcional en JavaScript](#functional-programming-libraries-in-javascript)
+* [Signatura de tipos](#signatura-de-tipos)
+* [Tipos de unión](#tipos-de-union)
+* [Tipos de producto](#tipos-de-producto)
+* [Opcional](#opcional)
+* [Librerías para la programación funcional en JavaScript](#librerías-para-la-programación-funcional-en-javascript)
 
 
 <!-- /RM -->
@@ -100,7 +96,7 @@ const is = (type) => (x) => Object(x) instanceof type
 filter(is(Number), [0, '1', 2, null]) // [0, 2]
 ```
 
-## Aplicacion parcial.
+## Aplicación parcial.
 
 Aplicar parcialmente una funcion, significa crear una nueva funcion rellenando previamente alguno de los argumentos de la funcion original.
 
@@ -461,7 +457,7 @@ Tambien puede asignarse una funcion lambda a una variable.
 const add1 = (a) => a + 1
 ```
 
-## Lambda Calculus
+## Cálculo Lambda
 
 Una rama de las matematicas que utiliza funciones para crear un [modelo universal de computacion](https://en.wikipedia.org/wiki/Lambda_calculus).
 
@@ -531,7 +527,7 @@ const compose = (f, g) => (x) => f(g(x))
 compose(foo, identity) ≍ compose(identity, foo) ≍ foo
 ```
 
-## Monada
+## Mónada
 
 Una monada es un objeto con dos funciones [`of`](#pointed-functor) y `chain`, `chain`  es similar a map excepto que anula el objeto anidado resultante.
 
@@ -756,7 +752,7 @@ __Otras lecturas__
 * [Mostly Adequate Guide](https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch7.html#whats-your-type)
 * [What is Hindley-Milner?](http://stackoverflow.com/a/399392/22425) en Stack Overflow
 
-## Tipos de Union
+## Tipos de Unión
 
 Un tipo union es la combinación de dos tipos juntos en otro.
 
@@ -841,7 +837,7 @@ getNestedPrice({item: {price: 9.99}}) // Some(9.99)
 
 `Option` a menudo tambien es conocido como `Maybe`. `Some` es algunas veces llamado `Just`. y `None` es algunas veces llamado  `Nothing`.
 
-## Librerias para la Programacion Funcional en JavaScriṕt.
+## Librerías para la Programación Funcional en JavaScript.
 
 * [mori](https://github.com/swannodette/mori)
 * [Ramda](https://github.com/ramda/ramda)
