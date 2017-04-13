@@ -4,7 +4,7 @@ La programación funcional (FP) ofrece muchas ventajas, y como resultado su popu
 
 Los ejemplos se presentan usando la sintaxis de JavaScript 2015 (ES2015) [Why JavaScript?](https://github.com/hemanth/functional-programming-jargon/wiki/Why-JavaScript%3F)
 
-*Este es un [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); por favor sientase libre de enviarnos un PR ;)*
+*Este es un [WIP](https://github.com/hemanth/functional-programming-jargon/issues/20); por favor siéntase libre de enviarnos un PR ;)*
 
 Cuando sea necesario, este documento usara términos definidos en la especificación de [Fantasy Land spec](https://github.com/fantasyland/fantasy-land)
 
